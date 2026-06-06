@@ -1,0 +1,20 @@
+services:
+  backend:
+    build: ./mern-project/server
+    ports:
+      - "5050:5050"
+    environment:
+      - ATLAS_URI=${ATLAS_URI}
+    restart: unless-stopped
+
+  frontend:
+    build: ./mern-project/client
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  python-etl:
+    build: ./python-project
+    restart: "no"

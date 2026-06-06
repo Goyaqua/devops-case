@@ -4,7 +4,7 @@ export default function HealthStatus() {
   const [status, setStatus] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5050/healthcheck/")
+    fetch("/healthcheck/")
       .then((response) => response.json())
       .then((data) => setStatus(data));
   }, []);

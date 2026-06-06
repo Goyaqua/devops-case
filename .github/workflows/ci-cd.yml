@@ -65,5 +65,5 @@ jobs:
           kubectl apply -f k8s/python/
           kubectl rollout restart deployment/backend -n devops-case
           kubectl rollout restart deployment/frontend -n devops-case
-          kubectl rollout status deployment/backend -n devops-case --timeout=120s
-          kubectl rollout status deployment/frontend -n devops-case --timeout=120s
+          kubectl rollout status deployment/backend -n devops-case --timeout=300s
+          kubectl rollout status deployment/frontend -n devops-case --timeout=300s

@@ -1,0 +1,57 @@
+cluster:
+  name: devops-case-k3s
+
+destinations:
+  grafana-cloud-metrics:
+    type: prometheus
+    url: <PROMETHEUS_PUSH_URL>
+    auth:
+      type: basic
+      username: "<INSTANCE_ID>"
+      password: "<GRAFANA_CLOUD_API_KEY>"
+  grafana-cloud-logs:
+    type: loki
+    url: <LOKI_PUSH_URL>
+    auth:
+      type: basic
+      username: "<INSTANCE_ID>"
+      password: "<GRAFANA_CLOUD_API_KEY>"
+
+clusterMetrics:
+  enabled: true
+  collector: alloy-metrics
+
+hostMetrics:
+  enabled: true
+  collector: alloy-metrics
+  linuxHosts:
+    enabled: true
+
+podLogsViaLoki:
+  enabled: true
+  collector: alloy-logs
+
+collectors:
+  alloy-metrics:
+    presets:
+      - clustered
+  alloy-logs:
+    presets:
+      - filesystem-log-reader
+      - daemonset
+
+collectorCommon:
+  alloy:
+    remoteConfig:
+      enabled: true
+      url: <FLEET_MANAGEMENT_URL>
+      auth:
+        type: basic
+        username: "<INSTANCE_ID>"
+        password: "<GRAFANA_CLOUD_API_KEY>"
+
+telemetryServices:
+  kube-state-metrics:
+    deploy: true
+  node-exporter:
+    deploy: true

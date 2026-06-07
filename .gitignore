@@ -7,3 +7,4 @@ terraform/*.tfstate
 terraform/*.tfstate.backup
 terraform/devops-case-key.pem
 terraform/terraform.tfvars
+monitoring/values.yaml
